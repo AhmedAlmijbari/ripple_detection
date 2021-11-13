@@ -102,9 +102,8 @@ def simulate_LFP(time, ripple_times, ripple_amplitude=2,
         iter(ripple_times)
     except TypeError:
         ripple_times = [ripple_times]
-
     for ripple_time in ripple_times:
-        carrier = norm(loc=ripple_time, scale=ripple_duration / 6).pdf(time)
+        carrier = norm(loc=ripple_time, scale=np.random.normal(loc=1)*ripple_duration / 6).pdf(time)
         carrier /= carrier.max()
         signal.append((ripple_amplitude / 2) * (ripple_signal * carrier))
 
